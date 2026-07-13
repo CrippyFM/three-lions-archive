@@ -15,15 +15,35 @@
 <section class="hero" style="padding:56px 0 40px">
   <div class="wrap">
     <span class="eyebrow">Explore Mode</span>
-    <h1 style="font-size:clamp(2rem,4vw,3rem)">A knowledge graph, not a list.</h1>
-    <p class="lede">Tournament &rarr; Match &rarr; Player &rarr; Manager &rarr; Opponent &rarr; Venue &rarr; Collection. Every object links onward — nothing here is a dead end.</p>
+    <h1 style="font-size:clamp(2rem,4vw,3rem)">Sixty years, plotted.</h1>
+    <p class="lede">Every World Cup and European Championship England have entered, mapped by year and how far they got. Click a result to open it — then follow the thread to its matches, players and managers.</p>
   </div>
 </section>
 
-<section style="padding-top:40px">
+<section style="padding-top:36px">
   <div class="wrap">
-    <div class="explore-tabs" id="tabs"></div>
-    <div class="grid cols-3" id="grid"></div>
+    <div class="chart-card">
+      <div class="chart-legend">
+        <span class="swatch"><span class="dot wc"></span> FIFA World Cup</span>
+        <span class="swatch"><span class="dot euro"></span> UEFA European Championship</span>
+      </div>
+      <p class="chart-hint">Tap or click any point for a summary. Use Tab + Enter on a keyboard.</p>
+
+      <svg id="tla-chart" class="tla-chart" viewBox="0 0 900 460" role="img" aria-label="Timeline of England's World Cup and European Championship results, 1966 to 2026"></svg>
+
+      <div id="detail-panel" class="detail-panel">
+        <span class="eyebrow" id="detail-eyebrow"></span>
+        <h3 id="detail-title"></h3>
+        <div class="facts" id="detail-facts"></div>
+        <p class="summary" id="detail-summary"></p>
+        <a class="btn btn-gold" id="detail-link" href="#">View full page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="explore-more">
+      <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--slate);align-self:center">Or jump straight to:</span>
+      <a href="../story.html">Story Mode</a>
+    </div>
   </div>
 </section>
 
@@ -40,52 +60,116 @@
   const store = await TLA.loadAll();
   TLA.renderHeader();
 
-  const tabs = [
-    { key: "tournaments", label: "Tournaments" },
-    { key: "players", label: "Players" },
-    { key: "managers", label: "Managers" },
-    { key: "matches", label: "Matches" },
-    { key: "venues", label: "Venues" },
-    { key: "opponents", label: "Opponents" },
-    { key: "collections", label: "Collections" }
+  const svg = document.getElementById("tla-chart");
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  // ---- layout ----
+  const W = 900, H = 460;
+  const marginLeft = 150, marginRight = 30, marginTop = 24, marginBottom = 50;
+  const plotW = W - marginLeft - marginRight;
+  const plotH = H - marginTop - marginBottom;
+  const yearMin = 1962, yearMax = 2030;
+
+  const stages = [
+    { rank: 1, label: "Group stage" },
+    { rank: 2, label: "Round of 16" },
+    { rank: 3, label: "Quarter-finals" },
+    { rank: 4, label: "Semi-finals" },
+    { rank: 5, label: "Runners-up" },
+    { rank: 6, label: "Winners" }
   ];
-  const params = new URLSearchParams(location.search);
-  let active = params.get("tab") || "tournaments";
-  if (!tabs.some(t => t.key === active)) active = "tournaments";
 
-  const tabsEl = document.getElementById("tabs");
-  const gridEl = document.getElementById("grid");
-
-  function cardFor(type, item){
-    if (type === "tournament") return `<span class="eyebrow">${item.year} &middot; ${item.result}</span><h3>${item.name}</h3><p>${item.eyebrow}</p>`;
-    if (type === "player") return `<span class="eyebrow">${item.position}</span><h3>${item.name}</h3><p>${item.caps} caps &middot; ${item.goals} goals &middot; ${item.years}</p>`;
-    if (type === "manager") return `<span class="eyebrow">Manager</span><h3>${item.name}</h3><p>${item.years}</p>`;
-    if (type === "match") return `<span class="eyebrow">${item.stage}</span><h3>${item.score}</h3><p>${item.date}</p>`;
-    if (type === "venue") return `<span class="eyebrow">${item.city}, ${item.country}</span><h3>${item.name}</h3><p>${item.summary.slice(0,90)}…</p>`;
-    if (type === "opponent") return `<span class="eyebrow">Opponent</span><h3>${item.name}</h3><p>${item.summary}</p>`;
-    if (type === "collection") return `<span class="eyebrow">${item.eyebrow}</span><h3>${item.title}</h3><p>${item.summary.slice(0,110)}…</p>`;
-    return "";
+  function stageRank(result) {
+    const r = result.toLowerCase();
+    if (r.includes("winners")) return 6;
+    if (r.includes("runners-up")) return 5;
+    if (r.includes("semi-final")) return 4;
+    if (r.includes("quarter-final")) return 3;
+    if (r.includes("round of 16")) return 2;
+    return 1;
   }
 
-  function render(){
-    tabsEl.innerHTML = tabs.map(t => `<button data-key="${t.key}" class="${t.key===active?'active':''}">${t.label}</button>`).join("");
-    const type = TLA.pluralOf ? null : null;
-    const singularMap = { tournaments:"tournament", players:"player", managers:"manager", matches:"match", venues:"venue", opponents:"opponent", collections:"collection" };
-    const items = store[active];
-    const stype = singularMap[active];
-    gridEl.innerHTML = items.map(item => `
-      <a class="card" style="display:block" href="${TLA.entityUrl(stype, item.id)}">${cardFor(stype, item)}</a>
-    `).join("");
+  function xFor(year) { return marginLeft + ((year - yearMin) / (yearMax - yearMin)) * plotW; }
+  function yFor(rank) { return marginTop + ((6 - rank) / (6 - 1)) * plotH; }
 
-    tabsEl.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        active = btn.dataset.key;
-        history.replaceState(null, "", "?tab=" + active);
-        render();
-      });
+  function el(name, attrs, parent) {
+    const node = document.createElementNS(SVG_NS, name);
+    for (const k in attrs) node.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  // ---- gridlines + y-axis labels ----
+  stages.forEach(s => {
+    const y = yFor(s.rank);
+    el("line", { class: "grid-line", x1: marginLeft, x2: W - marginRight, y1: y, y2: y }, svg);
+    el("text", { class: "axis-label y", x: marginLeft - 12, y: y + 4 }, svg).textContent = s.label;
+  });
+
+  // ---- x-axis decade ticks (shows the gaps — the "wilderness years") ----
+  for (let dec = 1970; dec <= 2020; dec += 10) {
+    const x = xFor(dec);
+    el("line", { class: "grid-line", x1: x, x2: x, y1: marginTop, y2: H - marginBottom }, svg);
+    el("text", { class: "axis-label", x: x, y: H - marginBottom + 22, "text-anchor": "middle" }, svg).textContent = dec;
+  }
+
+  // ---- the connecting thread, chronological ----
+  const tournaments = [...store.tournaments].sort((a, b) => a.year - b.year);
+  const pathPoints = tournaments.map(t => `${xFor(t.year)},${yFor(stageRank(t.result))}`).join(" ");
+  el("polyline", { class: "thread-path", points: pathPoints }, svg);
+
+  // ---- points ----
+  const detailPanel = document.getElementById("detail-panel");
+  const detailEyebrow = document.getElementById("detail-eyebrow");
+  const detailTitle = document.getElementById("detail-title");
+  const detailFacts = document.getElementById("detail-facts");
+  const detailSummary = document.getElementById("detail-summary");
+  const detailLink = document.getElementById("detail-link");
+  let activeCircle = null;
+
+  function showDetail(t, circle) {
+    if (activeCircle) activeCircle.classList.remove("active");
+    activeCircle = circle;
+    circle.classList.add("active");
+    detailEyebrow.textContent = (t.name.includes("World Cup") ? "FIFA World Cup" : "UEFA European Championship") + " · " + t.year;
+    detailTitle.textContent = t.eyebrow;
+    detailFacts.innerHTML = `<span>Host: ${t.host}</span><span>Result: ${t.result}</span>`;
+    detailSummary.textContent = t.summary;
+    detailLink.href = TLA.entityUrl("tournament", t.id);
+    detailPanel.classList.add("show");
+    if (typeof detailPanel.scrollIntoView === "function") {
+      detailPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+
+  tournaments.forEach(t => {
+    const isWC = t.name.includes("World Cup");
+    const isCurrent = t.result.toLowerCase().startsWith("in progress");
+    const cx = xFor(t.year), cy = yFor(stageRank(t.result));
+
+    const circle = el("circle", {
+      class: `point ${isWC ? "wc" : "euro"} ${isCurrent ? "current" : ""}`,
+      cx, cy, r: 9,
+      tabindex: "0", role: "button",
+      "aria-label": `${t.name}: ${t.result}`
+    }, svg);
+    el("title", {}, circle).textContent = `${t.name} — ${t.result}`;
+
+    const short = isWC ? "WC " + String(t.year).slice(2) : "Euro " + String(t.year).slice(2);
+    el("text", { class: "point-label", x: cx, y: cy - 16, "text-anchor": "middle" }, svg).textContent = short;
+
+    circle.addEventListener("click", () => showDetail(t, circle));
+    circle.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDetail(t, circle); }
     });
+  });
+
+  // open the in-progress tournament by default so first-time visitors see live context
+  const current = tournaments.find(t => t.result.toLowerCase().startsWith("in progress"));
+  if (current) {
+    const currentCircle = svg.querySelector("circle.current");
+    if (currentCircle) showDetail(current, currentCircle);
   }
-  render();
 })();
 </script>
 </body>
