@@ -10,10 +10,10 @@ const TLA = (() => {
   // explore/entity.html). This also makes the site work if it's ever hosted
   // in a GitHub Pages *project* site under a sub-path.
   const SCRIPT_DIR = (() => {
-    const scripts = document.getElementsByTagName("script");
-    const thisScript = scripts[scripts.length - 1];
-    const src = thisScript && thisScript.src ? thisScript.src : "js/app.js";
-    return src.replace(/js\/app\.js.*$/, "");
+    const el = document.currentScript;
+    const attr = (el && el.getAttribute("src")) || "js/app.js";
+    const abs = new URL(attr, document.baseURI).href;
+    return abs.replace(/js\/app\.js.*$/, "");
   })();
   const BASE = SCRIPT_DIR + "data/men/";
   const FILES = ["tournaments","matches","players","managers","venues","opponents","collections"];
