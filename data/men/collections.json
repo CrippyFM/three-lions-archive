@@ -1,0 +1,62 @@
+[
+  {
+    "id": "col-1966",
+    "title": "1966 and All That",
+    "eyebrow": "The Golden Year",
+    "summary": "The one time it actually came home. The story of Alf Ramsey's Wingless Wonders, Bobby Moore's captaincy, and Geoff Hurst's still-debated hat-trick — the single result every England conversation eventually returns to.",
+    "items": [
+      { "type": "tournament", "id": "wc-1966" },
+      { "type": "match", "id": "wc1966-final" },
+      { "type": "player", "id": "bobby-moore" },
+      { "type": "player", "id": "geoff-hurst" },
+      { "type": "player", "id": "bobby-charlton" },
+      { "type": "manager", "id": "alf-ramsey" },
+      { "type": "venue", "id": "wembley" }
+    ]
+  },
+  {
+    "id": "col-southgate",
+    "title": "Agony and Ecstasy: The Southgate Era",
+    "eyebrow": "2016–2024",
+    "summary": "No England manager since Ramsey took the team this far, this often. A World Cup semi-final and two European Championship finals — and still no trophy. The story of a manager whose own playing career began with the exact same heartbreak he spent eight years trying to end.",
+    "items": [
+      { "type": "manager", "id": "gareth-southgate" },
+      { "type": "tournament", "id": "wc-2018" },
+      { "type": "tournament", "id": "euro-2020" },
+      { "type": "tournament", "id": "wc-2022" },
+      { "type": "tournament", "id": "euro-2024" },
+      { "type": "player", "id": "harry-kane" },
+      { "type": "match", "id": "euro2020-final" },
+      { "type": "match", "id": "euro2024-final" }
+    ]
+  },
+  {
+    "id": "col-2026",
+    "title": "Road to New Jersey",
+    "eyebrow": "World Cup 2026 — Live Story",
+    "summary": "Thomas Tuchel's first tournament, and Jude Bellingham's coming of age. Follow England's run through Group L, a scare against DR Congo, an instant classic in Mexico City, and extra time against Norway — with the semi-final against Argentina still to come.",
+    "items": [
+      { "type": "tournament", "id": "wc-2026" },
+      { "type": "manager", "id": "thomas-tuchel" },
+      { "type": "player", "id": "jude-bellingham" },
+      { "type": "player", "id": "harry-kane" },
+      { "type": "match", "id": "wc2026-r16" },
+      { "type": "match", "id": "wc2026-qf" },
+      { "type": "match", "id": "wc2026-sf" }
+    ]
+  },
+  {
+    "id": "col-long-wait",
+    "title": "The Long Wait",
+    "eyebrow": "1966–2026",
+    "summary": "Sixty years and counting. A short guide to every near-miss between English football's only triumph and its ongoing pursuit of a second — Turin 1990, Wembley 1996, Moscow 2018, Wembley 2021, Al Khor 2022, Berlin 2024.",
+    "items": [
+      { "type": "match", "id": "wc1990-sf" },
+      { "type": "match", "id": "euro1996-sf" },
+      { "type": "match", "id": "wc2018-sf" },
+      { "type": "match", "id": "euro2020-final" },
+      { "type": "match", "id": "wc2022-qf" },
+      { "type": "match", "id": "euro2024-final" }
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Mode — Three Lions Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="tla-header"></header>
+
+<section class="hero" style="padding:56px 0 64px">
+  <div class="wrap">
+    <span class="eyebrow">Story Mode</span>
+    <h1 style="font-size:clamp(2rem,4vw,3rem)">An editorial journey through England football's defining eras.</h1>
+    <p class="lede">Read it top to bottom, like a museum audio guide — or jump straight to an era below.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:820px">
+
+    <div class="era">
+      <div class="years">1966</div>
+      <div>
+        <h3>The Golden Year</h3>
+        <p>On home soil, Alf Ramsey's "Wingless Wonders" beat West Germany 4-2 after extra time at Wembley. Geoff Hurst's hat-trick — still the only one in a World Cup final — sealed it, and Bobby Moore lifted the Jules Rimet Trophy as captain. Six decades on, it remains the only major title England men's football has ever won, and every era since has been measured against it.
+        <br><a data-link="tournament:wc-1966" href="#">Explore the 1966 World Cup &rarr;</a></p>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="years">1970–86</div>
+      <div>
+        <h3>The Wilderness Years</h3>
+        <p>England didn't even qualify for the 1974 or 1978 World Cups. Bobby Charlton and Gordon Banks retired as the great side of 1966 aged, and it took until the 1980s — with Bryan Robson's midfield drive and Gary Lineker's goals — for England to feel competitive again, reaching World Cup quarter-finals in 1986.</p>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="years">1990–96</div>
+      <div>
+        <h3>Gazza's Generation</h3>
+        <p>Bobby Robson's 1990 side reached the World Cup semi-finals in Italy, playing some of the country's most fondly remembered football, before penalties and Paul Gascoigne's tears defined the exit. Six years later, hosting Euro 96 under Terry Venables, England reached the semis again — "Football's Coming Home" became the unofficial anthem of the tournament — only for Germany to win on penalties once more. A young defender named Gareth Southgate missed the decisive kick.
+        <br><a data-link="tournament:wc-1990" href="#">1990 World Cup</a> &middot; <a data-link="tournament:euro-1996" href="#">Euro 1996</a></p>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="years">1998–2014</div>
+      <div>
+        <h3>The Golden Generation</h3>
+        <p>Beckham, Gerrard, Lampard, Rooney, Terry — arguably the most talented squad England had assembled since 1966 — never got past a World Cup quarter-final. Round-of-16 and quarter-final exits piled up across five tournaments, and the team's underperformance relative to its individual talent became a recurring national frustration.</p>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="years">2016–24</div>
+      <div>
+        <h3>The Southgate Rebuild</h3>
+        <p>Appointed after a chastening Euro 2016 exit to Iceland, Gareth Southgate — the same player who missed that penalty in 1996 — rebuilt the team's culture from the ground up. The reward: a World Cup semi-final in 2018, a first major final since 1966 at Euro 2020, a World Cup quarter-final in 2022, and a second final at Euro 2024. More major-tournament football than any England manager since Ramsey — but still no trophy. He resigned after the Euro 2024 final defeat to Spain.
+        <br><a data-link="collection:col-southgate" href="#">Explore the Southgate Era collection &rarr;</a></p>
+      </div>
+    </div>
+
+    <div class="era">
+      <div class="years">2024–present</div>
+      <div>
+        <h3>A New Era: Tuchel and the Road to 2026</h3>
+        <p>Thomas Tuchel, the first permanent overseas manager in the team's history, took charge after Southgate's departure. His England qualified for the 2026 World Cup with a perfect record, then navigated Group L, a scare against DR Congo, an instant classic against co-hosts Mexico, and extra time against Norway — driven by a rampant Jude Bellingham — to reach the semi-finals. Harry Kane, England's all-time record scorer, became the nation's all-time World Cup scorer along the way. Argentina stand between England and a first World Cup final since 1966.
+        <br><a data-link="collection:col-2026" href="#">Follow the Road to New Jersey &rarr;</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Three Lions Archive — a digital museum, not a database.</span>
+    <a href="explore/index.html" style="color:var(--gold-bright)">Switch to Explore Mode &rarr;</a>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+(async function(){
+  await TLA.loadAll();
+  TLA.renderHeader();
+  document.querySelectorAll('[data-link]').forEach(el => {
+    const [type, id] = el.dataset.link.split(':');
+    el.href = TLA.entityUrl(type, id);
+  });
+})();
+</script>
+</body>
+</html>

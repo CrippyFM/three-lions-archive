@@ -1,0 +1,171 @@
+[
+  {
+    "id": "wc-1966",
+    "name": "FIFA World Cup 1966",
+    "year": 1966,
+    "host": "England",
+    "result": "Winners",
+    "eyebrow": "The Only Time It Came Home",
+    "summary": "On home soil, Alf Ramsey's 'Wingless Wonders' beat West Germany 4-2 after extra time at Wembley. Geoff Hurst's hat-trick remains the only one ever scored in a World Cup final, and Bobby Moore lifted the Jules Rimet Trophy as captain. It is still England's only major men's title.",
+    "managerId": "alf-ramsey",
+    "venueId": "wembley",
+    "matchIds": [
+      "wc1966-final"
+    ],
+    "playerIds": [
+      "bobby-moore",
+      "geoff-hurst",
+      "bobby-charlton"
+    ],
+    "collectionIds": [
+      "col-1966"
+    ]
+  },
+  {
+    "id": "wc-1990",
+    "name": "FIFA World Cup 1990",
+    "year": 1990,
+    "host": "Italy",
+    "result": "Semi-finals",
+    "eyebrow": "Gazza's Tears, Penalties in Turin",
+    "summary": "Bobby Robson's side reached their first World Cup semi-final since 1966, playing some of the country's most admired football of the era. They were beaten by West Germany on penalties in Turin, a night remembered as much for Paul Gascoigne's tears as the result itself.",
+    "managerId": "bobby-robson",
+    "venueId": "stadio-delle-alpi",
+    "matchIds": [
+      "wc1990-sf"
+    ],
+    "playerIds": [
+      "gary-lineker",
+      "paul-gascoigne",
+      "peter-shilton"
+    ],
+    "collectionIds": []
+  },
+  {
+    "id": "euro-1996",
+    "name": "UEFA Euro 1996",
+    "year": 1996,
+    "host": "England",
+    "result": "Semi-finals",
+    "eyebrow": "Football's Coming Home",
+    "summary": "Hosted at home under Terry Venables, England reached the semi-finals at Wembley, again losing to Germany on penalties. Gareth Southgate's missed spot-kick became one of the defining images of English football heartbreak, one he would carry into his own management career decades later.",
+    "managerId": "terry-venables",
+    "venueId": "wembley",
+    "matchIds": [
+      "euro1996-sf"
+    ],
+    "playerIds": [
+      "paul-gascoigne",
+      "gareth-southgate"
+    ],
+    "collectionIds": []
+  },
+  {
+    "id": "wc-2018",
+    "name": "FIFA World Cup 2018",
+    "year": 2018,
+    "host": "Russia",
+    "result": "Semi-finals",
+    "eyebrow": "It's Coming Home (Nearly)",
+    "summary": "Gareth Southgate, now manager, led a young England side to their first World Cup semi-final in 28 years. Harry Kane won the Golden Boot with six goals before Croatia ended the run in extra time. The tournament reset public belief in the national team.",
+    "managerId": "gareth-southgate",
+    "venueId": "luzhniki",
+    "matchIds": [
+      "wc2018-sf"
+    ],
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "collectionIds": [
+      "col-southgate"
+    ]
+  },
+  {
+    "id": "euro-2020",
+    "name": "UEFA Euro 2020",
+    "year": 2021,
+    "host": "Across Europe (Final at Wembley)",
+    "result": "Runners-up",
+    "eyebrow": "So Close to Coming Home",
+    "summary": "Played in 2021 due to the pandemic, this was England's first major final since 1966. Southgate's side lost the final to Italy on penalties at Wembley after a 1-1 draw, with young penalty-takers Saka, Sancho and Rashford facing racist abuse that became a defining moment for the squad and the country.",
+    "managerId": "gareth-southgate",
+    "venueId": "wembley",
+    "matchIds": [
+      "euro2020-final"
+    ],
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "collectionIds": [
+      "col-southgate"
+    ]
+  },
+  {
+    "id": "wc-2022",
+    "name": "FIFA World Cup 2022",
+    "year": 2022,
+    "host": "Qatar",
+    "result": "Quarter-finals",
+    "eyebrow": "Kane's Penalty and a Golden Chance",
+    "summary": "England beat Senegal in the round of 16 before meeting eventual champions France in the quarter-finals. Harry Kane equalised from the penalty spot but missed a second late chance, and France went through 2-1.",
+    "managerId": "gareth-southgate",
+    "venueId": "al-bayt",
+    "matchIds": [
+      "wc2022-qf"
+    ],
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "collectionIds": [
+      "col-southgate"
+    ]
+  },
+  {
+    "id": "euro-2024",
+    "name": "UEFA Euro 2024",
+    "year": 2024,
+    "host": "Germany",
+    "result": "Runners-up",
+    "eyebrow": "Heartbreak in Berlin",
+    "summary": "A second consecutive major final, and a second defeat. Cole Palmer equalised late in Berlin but Spain, the tournament's best side, scored a winner through Mikel Oyarzabal. It was Gareth Southgate's last match in charge before he resigned, ending an eight-year tenure that brought two finals and a semi-final.",
+    "managerId": "gareth-southgate",
+    "venueId": "olympiastadion-berlin",
+    "matchIds": [
+      "euro2024-final"
+    ],
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "collectionIds": [
+      "col-southgate"
+    ]
+  },
+  {
+    "id": "wc-2026",
+    "name": "FIFA World Cup 2026",
+    "year": 2026,
+    "host": "USA, Mexico & Canada",
+    "result": "In progress \u2014 Semi-finals",
+    "eyebrow": "Road to New Jersey",
+    "summary": "Thomas Tuchel's first tournament in charge. England won Group L (beating Croatia and Panama, drawing 0-0 with Ghana), then knocked out DR Congo, Mexico and Norway in the knockout rounds. Jude Bellingham has scored crucial goals in every knockout match so far, and Harry Kane became England's all-time World Cup scorer along the way. England face Argentina in the semi-final in Atlanta on 15 July, with the final scheduled for 19 July in New Jersey.",
+    "managerId": "thomas-tuchel",
+    "venueId": "mercedes-benz-atlanta",
+    "matchIds": [
+      "wc2026-r32",
+      "wc2026-r16",
+      "wc2026-qf",
+      "wc2026-sf"
+    ],
+    "playerIds": [
+      "harry-kane",
+      "jude-bellingham"
+    ],
+    "collectionIds": [
+      "col-2026"
+    ]
+  }
+]

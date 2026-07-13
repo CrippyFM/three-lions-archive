@@ -1,0 +1,167 @@
+[
+  {
+    "id": "wc1966-final",
+    "tournamentId": "wc-1966",
+    "stage": "Final",
+    "date": "1966-07-30",
+    "opponentId": "west-germany",
+    "score": "England 4-2 West Germany (aet)",
+    "venueId": "wembley",
+    "summary": "Geoff Hurst's hat-trick \u2014 including the most argued-over goal in World Cup history, a shot that struck the crossbar and bounced down \u2014 sealed the trophy after West Germany equalised deep into normal time through Wolfgang Weber. Bobby Moore lifted the Jules Rimet Trophy in front of the Queen.",
+    "playerIds": [
+      "bobby-moore",
+      "geoff-hurst",
+      "bobby-charlton"
+    ],
+    "managerId": "alf-ramsey"
+  },
+  {
+    "id": "wc1990-sf",
+    "tournamentId": "wc-1990",
+    "stage": "Semi-final",
+    "date": "1990-07-04",
+    "opponentId": "west-germany",
+    "score": "England 1-1 West Germany (West Germany win 4-3 on penalties)",
+    "venueId": "stadio-delle-alpi",
+    "summary": "Gary Lineker equalised for England after Andreas Brehme's deflected free-kick, but the match went to penalties. Chris Waddle and Stuart Pearce missed their spot-kicks, and Paul Gascoigne's tears after picking up a booking that would have ruled him out of the final became one of English football's most replayed images.",
+    "playerIds": [
+      "gary-lineker",
+      "paul-gascoigne",
+      "peter-shilton"
+    ],
+    "managerId": "bobby-robson"
+  },
+  {
+    "id": "euro1996-sf",
+    "tournamentId": "euro-1996",
+    "stage": "Semi-final",
+    "date": "1996-06-26",
+    "opponentId": "germany",
+    "score": "England 1-1 Germany (Germany win 6-5 on penalties)",
+    "venueId": "wembley",
+    "summary": "Alan Shearer put England ahead inside three minutes but Stefan Kuntz equalised, and the match went to penalties again. Every England outfield player scored their spot-kick except Gareth Southgate, whose miss sent Germany through to a final they went on to win.",
+    "playerIds": [
+      "gareth-southgate",
+      "paul-gascoigne"
+    ],
+    "managerId": "terry-venables"
+  },
+  {
+    "id": "wc2018-sf",
+    "tournamentId": "wc-2018",
+    "stage": "Semi-final",
+    "date": "2018-07-11",
+    "opponentId": "croatia",
+    "score": "England 1-2 Croatia (aet)",
+    "venueId": "luzhniki",
+    "summary": "Kieran Trippier's early free-kick had England dreaming, but Croatia's midfield control told in extra time and Mario Mandzukic scored the winner. Still, it was England's best World Cup finish since 1990, and marked the start of the Southgate era's credibility.",
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "managerId": "gareth-southgate"
+  },
+  {
+    "id": "euro2020-final",
+    "tournamentId": "euro-2020",
+    "stage": "Final",
+    "date": "2021-07-11",
+    "opponentId": "italy",
+    "score": "England 1-1 Italy (Italy win 3-2 on penalties)",
+    "venueId": "wembley",
+    "summary": "Luke Shaw scored after just under two minutes, England's fastest ever final goal, but Leonardo Bonucci equalised and the game went to penalties. Marcus Rashford, Jadon Sancho and Bukayo Saka all missed and were subjected to horrific racist abuse online afterwards, a moment that galvanised support for the players across the country.",
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "managerId": "gareth-southgate"
+  },
+  {
+    "id": "wc2022-qf",
+    "tournamentId": "wc-2022",
+    "stage": "Quarter-final",
+    "date": "2022-12-10",
+    "opponentId": "france",
+    "score": "England 1-2 France",
+    "venueId": "al-bayt",
+    "summary": "Harry Kane levelled from the penalty spot after Aurelien Tchouameni's opener, but a second penalty, awarded after a marginal VAR review, was blazed over the bar. France held on to reach the semi-finals and went on to reach the final.",
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "managerId": "gareth-southgate"
+  },
+  {
+    "id": "euro2024-final",
+    "tournamentId": "euro-2024",
+    "stage": "Final",
+    "date": "2024-07-14",
+    "opponentId": "spain",
+    "score": "England 1-2 Spain",
+    "venueId": "olympiastadion-berlin",
+    "summary": "Nico Williams put Spain ahead early in the second half. Substitute Cole Palmer equalised with a fine finish, giving England hope, but Mikel Oyarzabal scored a late winner. It was Gareth Southgate's final match in charge.",
+    "playerIds": [
+      "harry-kane",
+      "gareth-southgate"
+    ],
+    "managerId": "gareth-southgate"
+  },
+  {
+    "id": "wc2026-r32",
+    "tournamentId": "wc-2026",
+    "stage": "Round of 32",
+    "date": "2026-07-01",
+    "opponentId": "dr-congo",
+    "score": "England 2-1 DR Congo",
+    "venueId": "mercedes-benz-atlanta",
+    "summary": "A scare against DR Congo in Atlanta, but England's greater quality eventually told as they progressed into the last 16.",
+    "playerIds": [
+      "harry-kane"
+    ],
+    "managerId": "thomas-tuchel"
+  },
+  {
+    "id": "wc2026-r16",
+    "tournamentId": "wc-2026",
+    "stage": "Round of 16",
+    "date": "2026-07-06",
+    "opponentId": "mexico",
+    "score": "Mexico 2-3 England",
+    "venueId": "estadio-azteca",
+    "summary": "An instant classic at the Estadio Azteca. Jude Bellingham scored twice, either side of a Julian Quinones goal, before Harry Kane converted a penalty. England went down to ten men but held on against the co-hosts in Mexico City.",
+    "playerIds": [
+      "jude-bellingham",
+      "harry-kane"
+    ],
+    "managerId": "thomas-tuchel"
+  },
+  {
+    "id": "wc2026-qf",
+    "tournamentId": "wc-2026",
+    "stage": "Quarter-final",
+    "date": "2026-07-11",
+    "opponentId": "norway",
+    "score": "Norway 1-2 England (aet)",
+    "venueId": "hard-rock-miami",
+    "summary": "England trailed Erling Haaland's Norway at half-time in Miami, but Jude Bellingham levelled just before the break and struck again in extra time to send England into a fourth World Cup semi-final.",
+    "playerIds": [
+      "jude-bellingham"
+    ],
+    "managerId": "thomas-tuchel"
+  },
+  {
+    "id": "wc2026-sf",
+    "tournamentId": "wc-2026",
+    "stage": "Semi-final",
+    "date": "2026-07-15",
+    "opponentId": "argentina",
+    "score": "Scheduled \u2014 Wednesday 15 July, Atlanta",
+    "venueId": "mercedes-benz-atlanta",
+    "summary": "England face Lionel Messi's reigning champions Argentina in Atlanta for a place in the World Cup final. It is comfortably Thomas Tuchel's toughest test since taking charge.",
+    "playerIds": [
+      "harry-kane",
+      "jude-bellingham"
+    ],
+    "managerId": "thomas-tuchel"
+  }
+]

@@ -1,0 +1,202 @@
+/* ===== Three Lions Archive — Design Tokens =====
+   Palette: Wembley Navy, Archive White, Trophy Gold, Slate, Charcoal, Pitch Green
+   Type: Fraunces (display), Inter (body), IBM Plex Mono (data/scores)
+   Signature: "The Thread" — a gold cord that physically connects every
+   linked object, echoing Explore Mode's chain: Tournament > Match > Player
+   > Manager > Opponent > Venue > Collection. Nothing is a dead end. */
+
+:root{
+  --navy:#0b1f3a;
+  --navy-deep:#071527;
+  --white:#f7f8fa;
+  --gold:#c9a227;
+  --gold-bright:#e6c15c;
+  --slate:#4a5568;
+  --charcoal:#15171c;
+  --pitch:#1f4d3a;
+  --font-display:"Fraunces", Georgia, serif;
+  --font-body:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, monospace;
+  --max:1120px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  background:var(--white);
+  color:var(--charcoal);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:var(--navy);
+  border-bottom:1px solid rgba(201,162,39,.35);
+}
+.site-header .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--white)}
+.brand .badge{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, #8a6d16 100%);flex:none}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-size:.92rem;letter-spacing:.02em}
+.nav-links a{color:rgba(247,248,250,.78);padding:6px 0;border-bottom:2px solid transparent;transition:color .15s, border-color .15s}
+.nav-links a:hover, .nav-links a.active{color:var(--gold-bright);border-color:var(--gold)}
+.toggle-mfw{display:flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;font-size:.78rem}
+.toggle-mfw span{padding:5px 12px;border-radius:999px;color:rgba(247,248,250,.6)}
+.toggle-mfw span.on{background:var(--gold);color:var(--navy-deep);font-weight:600}
+
+.search-box{position:relative;flex:none}
+.search-box input{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  color:var(--white);
+  border-radius:8px;
+  padding:8px 12px 8px 32px;
+  font-family:var(--font-body);
+  font-size:.9rem;
+  width:190px;
+}
+.search-box input::placeholder{color:rgba(247,248,250,.45)}
+.search-box::before{
+  content:"";position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  width:13px;height:13px;border:2px solid rgba(247,248,250,.5);border-radius:50%;
+}
+.search-results{
+  position:absolute;top:calc(100% + 8px);right:0;width:320px;max-height:420px;overflow:auto;
+  background:var(--white);color:var(--charcoal);border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.35);
+  display:none;padding:8px;
+}
+.search-results.show{display:block}
+.search-results a{display:block;padding:10px 12px;border-radius:7px;font-size:.88rem}
+.search-results a:hover{background:#eef1f6}
+.search-results .kind{font-family:var(--font-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--pitch)}
+.search-results .empty{padding:12px;color:var(--slate);font-size:.85rem}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:
+    radial-gradient(1200px 400px at 15% -10%, rgba(201,162,39,.18), transparent 60%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color:var(--white);
+  padding:76px 0 96px;
+  position:relative;
+  overflow:hidden;
+}
+.hero .eyebrow{font-family:var(--font-mono);letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;color:var(--gold-bright);margin-bottom:18px}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;margin:0 0 20px;max-width:780px}
+.hero p.lede{font-size:1.15rem;color:rgba(247,248,250,.82);max-width:620px;margin:0 0 32px}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:8px;
+  font-weight:600;font-size:.94rem;border:1px solid transparent;transition:transform .15s, background .15s;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:var(--navy-deep)}
+.btn-gold:hover{background:var(--gold-bright)}
+.btn-ghost{border-color:rgba(247,248,250,.35);color:var(--white)}
+.btn-ghost:hover{border-color:var(--gold-bright);color:var(--gold-bright)}
+
+/* ---------- The Thread (signature element) ---------- */
+.thread-rail{position:relative;margin:56px 0 0}
+.thread-rail::before{
+  content:"";position:absolute;left:0;right:0;top:34px;height:2px;
+  background:linear-gradient(90deg, transparent, var(--gold) 6%, var(--gold) 94%, transparent);
+  opacity:.55;
+}
+.thread-track{display:flex;gap:0;overflow-x:auto;padding:0 0 20px;scrollbar-width:thin}
+.thread-node{
+  flex:none;width:190px;position:relative;padding:0 14px;cursor:pointer;
+}
+.thread-node .dot{
+  width:13px;height:13px;border-radius:50%;background:var(--navy-deep);border:2px solid var(--gold);
+  margin:28px auto 14px;position:relative;z-index:2;transition:background .15s, transform .15s;
+}
+.thread-node:hover .dot{background:var(--gold);transform:scale(1.15)}
+.thread-node .year{font-family:var(--font-mono);font-size:.78rem;color:var(--gold-bright);text-align:center;letter-spacing:.04em}
+.thread-node .label{font-family:var(--font-display);font-size:1rem;text-align:center;margin-top:4px;color:var(--white)}
+.thread-node .result{font-size:.74rem;text-align:center;color:rgba(247,248,250,.55);margin-top:3px}
+.thread-node.current .dot{background:var(--gold-bright);box-shadow:0 0 0 5px rgba(230,193,92,.22)}
+
+/* thread connector used on entity pages linking related objects */
+.thread-related{margin-top:14px}
+.thread-related-title{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--pitch);margin-bottom:10px}
+.thread-chain{display:flex;flex-wrap:wrap;gap:0;align-items:center}
+.thread-chip{
+  display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #e3e6ec;border-radius:999px;
+  padding:8px 14px 8px 10px;font-size:.86rem;margin:4px 10px 4px 0;position:relative;transition:border-color .15s, box-shadow .15s;
+}
+.thread-chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.thread-chip:hover{border-color:var(--gold);box-shadow:0 4px 14px rgba(201,162,39,.18)}
+.thread-chip .kind{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;color:var(--slate);margin-right:2px}
+
+/* ---------- Sections / Cards ---------- */
+section{padding:64px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.section-head h2{font-family:var(--font-display);font-size:1.9rem;margin:0;color:var(--navy)}
+.section-head .eyebrow{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pitch);display:block;margin-bottom:6px}
+.section-head a.see-all{font-size:.88rem;color:var(--pitch);border-bottom:1px solid var(--pitch)}
+
+.grid{display:grid;gap:20px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:860px){.grid.cols-3, .grid.cols-2{grid-template-columns:1fr}}
+
+.card{
+  background:#fff;border:1px solid #e7e9ee;border-radius:14px;padding:22px;
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(11,31,58,.10);border-color:#d9dee8}
+.card .eyebrow{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--pitch)}
+.card h3{font-family:var(--font-display);font-size:1.28rem;margin:8px 0 8px;color:var(--navy)}
+.card p{font-size:.92rem;color:var(--slate);margin:0}
+.card .meta{margin-top:14px;font-family:var(--font-mono);font-size:.78rem;color:var(--gold);border-top:1px dashed #e2e5ec;padding-top:12px}
+
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;background:var(--navy);border-radius:16px;padding:32px 28px;color:var(--white)}
+@media (max-width:760px){.stat-strip{grid-template-columns:repeat(2,1fr)}}
+.stat{text-align:center}
+.stat .num{font-family:var(--font-mono);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--gold-bright);font-weight:600}
+.stat .label{font-size:.78rem;color:rgba(247,248,250,.7);margin-top:4px}
+
+/* ---------- Entity page ---------- */
+.entity-hero{background:var(--navy);color:var(--white);padding:52px 0}
+.entity-hero .kind-tag{font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-bright)}
+.entity-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin:12px 0}
+.entity-hero .facts{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;font-family:var(--font-mono);font-size:.86rem;color:rgba(247,248,250,.8)}
+.entity-body{padding:48px 0}
+.entity-body .lede{font-size:1.12rem;max-width:720px}
+
+/* ---------- Explore hub ---------- */
+.explore-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.explore-tabs button{
+  font-family:var(--font-mono);font-size:.82rem;padding:9px 16px;border-radius:999px;border:1px solid #d9dee8;
+  background:#fff;color:var(--slate);cursor:pointer;transition:all .15s;
+}
+.explore-tabs button.active, .explore-tabs button:hover{border-color:var(--gold);color:var(--navy);background:#fdf8ea}
+
+/* ---------- Story mode ---------- */
+.era{display:grid;grid-template-columns:120px 1fr;gap:28px;padding:34px 0;border-top:1px solid #e7e9ee}
+.era:first-child{border-top:none}
+.era .years{font-family:var(--font-mono);color:var(--gold);font-size:1rem;padding-top:4px}
+.era h3{font-family:var(--font-display);font-size:1.5rem;margin:0 0 10px;color:var(--navy)}
+.era p{color:var(--slate);max-width:680px}
+@media (max-width:640px){.era{grid-template-columns:1fr;gap:8px}}
+
+/* ---------- Footer ---------- */
+footer{background:var(--navy-deep);color:rgba(247,248,250,.6);padding:40px 0;font-size:.86rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---------- Utility ---------- */
+.badge-toggle{display:inline-flex;gap:6px;align-items:center}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px}
+.empty-state{padding:60px 0;text-align:center;color:var(--slate)}
+.empty-state h2{font-family:var(--font-display);color:var(--navy)}

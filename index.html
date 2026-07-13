@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Lions Archive — The Complete History of England Football</title>
+<meta name="description" content="A digital museum of England men's football: every tournament, player, manager and match, all interconnected.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="tla-header"></header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Est. 1872 &middot; Live through World Cup 2026</span>
+    <h1>The complete story of England football, told through everything it connects to.</h1>
+    <p class="lede">Every tournament, match, player and manager since the game began — woven together on a single thread. Not a database. A museum.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="story.html">Begin Story Mode</a>
+      <a class="btn btn-ghost" href="explore/index.html">Explore the Archive</a>
+    </div>
+
+    <div class="thread-rail">
+      <div id="rail-tournaments"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Sixty years, one thread</span>
+        <h2>Where the story stands today</h2>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat"><div class="num">1</div><div class="label">Major title (1966)</div></div>
+      <div class="stat"><div class="num">85</div><div class="label">Harry Kane's England goals — the record</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Major finals reached under Southgate &amp; Tuchel since 2018</div></div>
+      <div class="stat"><div class="num">15 Jul</div><div class="label">World Cup semi-final vs Argentina</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Editorial collections</span>
+        <h2>Where to start exploring</h2>
+      </div>
+      <a class="see-all" href="explore/index.html?tab=collections">See all collections &rarr;</a>
+    </div>
+    <div class="grid cols-3" id="collections-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Two ways to explore</span>
+        <h2>Story Mode or Explore Mode</h2>
+      </div>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <span class="eyebrow">Guided &amp; editorial</span>
+        <h3>Story Mode</h3>
+        <p>An immersive, era-by-era journey through England's football history — written to be read from beginning to end, like a museum audio guide.</p>
+        <div class="meta"><a href="story.html">Start the journey &rarr;</a></div>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Open-ended &amp; connected</span>
+        <h3>Explore Mode</h3>
+        <p>Follow the thread yourself. Every tournament links to its matches, every match to its players, every player to their managers, collections and more.</p>
+        <div class="meta"><a href="explore/index.html">Open the archive &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Three Lions Archive — a digital museum, not a database.</span>
+    <span>Built with HTML, CSS and JSON. No backend required.</span>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+(async function(){
+  const store = await TLA.loadAll();
+  TLA.renderHeader();
+  TLA.renderThreadRail("rail-tournaments", store.tournaments);
+
+  const grid = document.getElementById("collections-grid");
+  grid.innerHTML = store.collections.slice(0,3).map(c => `
+    <a class="card" href="${TLA.entityUrl('collection', c.id)}" style="display:block">
+      <span class="eyebrow">${c.eyebrow}</span>
+      <h3>${c.title}</h3>
+      <p>${c.summary}</p>
+      <div class="meta">${c.items.length} linked objects</div>
+    </a>`).join("");
+})();
+</script>
+</body>
+</html>

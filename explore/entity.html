@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Three Lions Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="tla-header"></header>
+
+<div id="content"></div>
+
+<footer>
+  <div class="wrap">
+    <span>Three Lions Archive — a digital museum, not a database.</span>
+    <a href="index.html" style="color:var(--gold-bright)">&larr; Back to Explore Mode</a>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+(async function(){
+  const store = await TLA.loadAll();
+  TLA.renderHeader();
+
+  const params = new URLSearchParams(location.search);
+  const type = params.get("type");
+  const id = params.get("id");
+  const item = TLA.get(type, id);
+  const content = document.getElementById("content");
+
+  if (!item) {
+    content.innerHTML = `<div class="wrap empty-state"><h2>Not found in the archive</h2>
+      <p>That object doesn't exist yet — try Explore Mode instead.</p>
+      <a class="btn btn-gold" href="index.html">Back to Explore Mode</a></div>`;
+    return;
+  }
+
+  document.getElementById("page-title").textContent = (item.name || item.title || item.stage) + " — Three Lions Archive";
+
+  function factRow(pairs){
+    return `<div class="facts">${pairs.filter(p=>p[1]).map(p=>`<span>${p[0]}: ${p[1]}</span>`).join("")}</div>`;
+  }
+
+  // reverse-lookup helpers: find items in other collections that reference this one
+  function reverse(collectionKey, field, value){
+    return store[collectionKey].filter(i => Array.isArray(i[field]) ? i[field].includes(value) : i[field] === value);
+  }
+
+  let hero = "", chains = [];
+
+  if (type === "tournament") {
+    hero = `<span class="kind-tag">Tournament &middot; ${item.year}</span><h1>${item.name}</h1><p>${item.eyebrow}</p>
+      ${factRow([["Host", item.host], ["Result", item.result]])}`;
+    chains.push(["Manager", item.managerId ? [{type:"manager", id:item.managerId}] : []]);
+    chains.push(["Venue", item.venueId ? [{type:"venue", id:item.venueId}] : []]);
+    chains.push(["Matches", (item.matchIds||[]).map(i=>({type:"match", id:i}))]);
+    chains.push(["Key players", (item.playerIds||[]).map(i=>({type:"player", id:i}))]);
+    chains.push(["Collections", (item.collectionIds||[]).map(i=>({type:"collection", id:i}))]);
+  }
+
+  if (type === "match") {
+    hero = `<span class="kind-tag">Match &middot; ${item.stage}</span><h1>${item.score}</h1><p>${item.date}</p>`;
+    chains.push(["Tournament", item.tournamentId ? [{type:"tournament", id:item.tournamentId}] : []]);
+    chains.push(["Manager", item.managerId ? [{type:"manager", id:item.managerId}] : []]);
+    chains.push(["Venue", item.venueId ? [{type:"venue", id:item.venueId}] : []]);
+    chains.push(["Opponent", item.opponentId ? [{type:"opponent", id:item.opponentId}] : []]);
+    chains.push(["Players", (item.playerIds||[]).map(i=>({type:"player", id:i}))]);
+  }
+
+  if (type === "player") {
+    hero = `<span class="kind-tag">Player &middot; ${item.position}</span><h1>${item.name}</h1><p>${item.years}</p>
+      ${factRow([["Caps", item.caps], ["Goals", item.goals]])}`;
+    chains.push(["Tournaments", (item.tournamentIds||[]).map(i=>({type:"tournament", id:i}))]);
+    chains.push(["Collections", (item.collectionIds||[]).map(i=>({type:"collection", id:i}))]);
+    const matches = reverse("matches", "playerIds", item.id);
+    chains.push(["Matches played", matches.map(m=>({type:"match", id:m.id}))]);
+  }
+
+  if (type === "manager") {
+    hero = `<span class="kind-tag">Manager &middot; ${item.years}</span><h1>${item.name}</h1>`;
+    chains.push(["Tournaments", (item.tournamentIds||[]).map(i=>({type:"tournament", id:i}))]);
+    const matches = reverse("matches", "managerId", item.id);
+    chains.push(["Matches in charge", matches.map(m=>({type:"match", id:m.id}))]);
+  }
+
+  if (type === "venue") {
+    hero = `<span class="kind-tag">Venue &middot; ${item.city}, ${item.country}</span><h1>${item.name}</h1>`;
+    chains.push(["Matches played here", (item.matchIds||[]).map(i=>({type:"match", id:i}))]);
+  }
+
+  if (type === "opponent") {
+    hero = `<span class="kind-tag">Opponent</span><h1>${item.name}</h1>`;
+    const matches = reverse("matches", "opponentId", item.id);
+    chains.push(["Matches against England", matches.map(m=>({type:"match", id:m.id}))]);
+  }
+
+  if (type === "collection") {
+    hero = `<span class="kind-tag">Collection &middot; ${item.eyebrow}</span><h1>${item.title}</h1>`;
+    chains.push(["In this collection", item.items]);
+  }
+
+  content.innerHTML = `
+    <section class="entity-hero"><div class="wrap">${hero}</div></section>
+    <section class="entity-body"><div class="wrap">
+      <p class="lede">${item.summary || ""}</p>
+      ${chains.filter(c=>c[1].length).map(c => `<div id="chain-${c[0].replace(/\\s+/g,'-')}" class="thread-related"></div>`).join("")}
+    </div></section>
+  `;
+
+  chains.forEach(([label, refs]) => {
+    if (!refs.length) return;
+    TLA.renderChain("chain-" + label.replace(/\s+/g,'-'), label, refs);
+  });
+})();
+</script>
+</body>
+</html>

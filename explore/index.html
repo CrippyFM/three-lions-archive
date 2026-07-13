@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Mode — Three Lions Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="tla-header"></header>
+
+<section class="hero" style="padding:56px 0 40px">
+  <div class="wrap">
+    <span class="eyebrow">Explore Mode</span>
+    <h1 style="font-size:clamp(2rem,4vw,3rem)">A knowledge graph, not a list.</h1>
+    <p class="lede">Tournament &rarr; Match &rarr; Player &rarr; Manager &rarr; Opponent &rarr; Venue &rarr; Collection. Every object links onward — nothing here is a dead end.</p>
+  </div>
+</section>
+
+<section style="padding-top:40px">
+  <div class="wrap">
+    <div class="explore-tabs" id="tabs"></div>
+    <div class="grid cols-3" id="grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Three Lions Archive — a digital museum, not a database.</span>
+    <a href="../story.html" style="color:var(--gold-bright)">Switch to Story Mode &rarr;</a>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+(async function(){
+  const store = await TLA.loadAll();
+  TLA.renderHeader();
+
+  const tabs = [
+    { key: "tournaments", label: "Tournaments" },
+    { key: "players", label: "Players" },
+    { key: "managers", label: "Managers" },
+    { key: "matches", label: "Matches" },
+    { key: "venues", label: "Venues" },
+    { key: "opponents", label: "Opponents" },
+    { key: "collections", label: "Collections" }
+  ];
+  const params = new URLSearchParams(location.search);
+  let active = params.get("tab") || "tournaments";
+  if (!tabs.some(t => t.key === active)) active = "tournaments";
+
+  const tabsEl = document.getElementById("tabs");
+  const gridEl = document.getElementById("grid");
+
+  function cardFor(type, item){
+    if (type === "tournament") return `<span class="eyebrow">${item.year} &middot; ${item.result}</span><h3>${item.name}</h3><p>${item.eyebrow}</p>`;
+    if (type === "player") return `<span class="eyebrow">${item.position}</span><h3>${item.name}</h3><p>${item.caps} caps &middot; ${item.goals} goals &middot; ${item.years}</p>`;
+    if (type === "manager") return `<span class="eyebrow">Manager</span><h3>${item.name}</h3><p>${item.years}</p>`;
+    if (type === "match") return `<span class="eyebrow">${item.stage}</span><h3>${item.score}</h3><p>${item.date}</p>`;
+    if (type === "venue") return `<span class="eyebrow">${item.city}, ${item.country}</span><h3>${item.name}</h3><p>${item.summary.slice(0,90)}…</p>`;
+    if (type === "opponent") return `<span class="eyebrow">Opponent</span><h3>${item.name}</h3><p>${item.summary}</p>`;
+    if (type === "collection") return `<span class="eyebrow">${item.eyebrow}</span><h3>${item.title}</h3><p>${item.summary.slice(0,110)}…</p>`;
+    return "";
+  }
+
+  function render(){
+    tabsEl.innerHTML = tabs.map(t => `<button data-key="${t.key}" class="${t.key===active?'active':''}">${t.label}</button>`).join("");
+    const type = TLA.pluralOf ? null : null;
+    const singularMap = { tournaments:"tournament", players:"player", managers:"manager", matches:"match", venues:"venue", opponents:"opponent", collections:"collection" };
+    const items = store[active];
+    const stype = singularMap[active];
+    gridEl.innerHTML = items.map(item => `
+      <a class="card" style="display:block" href="${TLA.entityUrl(stype, item.id)}">${cardFor(stype, item)}</a>
+    `).join("");
+
+    tabsEl.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        active = btn.dataset.key;
+        history.replaceState(null, "", "?tab=" + active);
+        render();
+      });
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>

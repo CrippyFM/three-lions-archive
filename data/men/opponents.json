@@ -1,0 +1,12 @@
+[
+  { "id": "west-germany", "name": "West Germany", "summary": "England's fiercest rival of the 20th century — the beaten finalist in 1966, and the side that ended the 1990 and 1996 tournament runs on penalties." },
+  { "id": "germany", "name": "Germany", "summary": "Successor rivalry to West Germany. Beat England on penalties at Euro 1996." },
+  { "id": "croatia", "name": "Croatia", "summary": "Ended England's 2018 World Cup run in the semi-finals, going on to reach the final themselves." },
+  { "id": "italy", "name": "Italy", "summary": "Beat England on penalties in the Euro 2020 final at Wembley, England's first major final since 1966." },
+  { "id": "france", "name": "France", "summary": "Eliminated England in the 2022 World Cup quarter-finals on their way to the final." },
+  { "id": "spain", "name": "Spain", "summary": "Beat England in the Euro 2024 final in Berlin, the tournament's outstanding side." },
+  { "id": "dr-congo", "name": "DR Congo", "summary": "Gave England a scare in the round of 32 at the 2026 World Cup before going out 2-1." },
+  { "id": "mexico", "name": "Mexico", "summary": "Co-hosts of the 2026 World Cup, beaten 3-2 by England in an instant-classic round of 16 tie in Mexico City." },
+  { "id": "norway", "name": "Norway", "summary": "Led by Erling Haaland, pushed England to extra time in the 2026 quarter-final before Jude Bellingham's brace won it." },
+  { "id": "argentina", "name": "Argentina", "summary": "Reigning world champions and England's 2026 semi-final opponents in Atlanta." }
+]
