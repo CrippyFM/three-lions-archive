@@ -4,7 +4,18 @@
    No backend, no build step — pure static JSON + fetch. */
 
 const TLA = (() => {
-  const BASE = "data/men/";
+  // Resolve the data path relative to THIS SCRIPT's location, not the page's
+  // location — so it works the same whether the page is at the site root
+  // (index.html, story.html) or one folder deep (explore/index.html,
+  // explore/entity.html). This also makes the site work if it's ever hosted
+  // in a GitHub Pages *project* site under a sub-path.
+  const SCRIPT_DIR = (() => {
+    const scripts = document.getElementsByTagName("script");
+    const thisScript = scripts[scripts.length - 1];
+    const src = thisScript && thisScript.src ? thisScript.src : "js/app.js";
+    return src.replace(/js\/app\.js.*$/, "");
+  })();
+  const BASE = SCRIPT_DIR + "data/men/";
   const FILES = ["tournaments","matches","players","managers","venues","opponents","collections"];
   let store = null;
 
@@ -12,8 +23,18 @@ const TLA = (() => {
     if (store) return store;
     const entries = await Promise.all(FILES.map(async f => {
       const res = await fetch(BASE + f + ".json");
+      if (!res.ok) {
+        throw new Error("Could not load " + BASE + f + ".json (HTTP " + res.status + ")");
+      }
       return [f, await res.json()];
-    }));
+    })).catch(err => {
+      document.body.innerHTML = `<div style="max-width:600px;margin:80px auto;padding:24px;font-family:sans-serif;color:#0b1f3a">
+        <h2>The archive's data didn't load</h2>
+        <p>${err.message}</p>
+        <p>Check that the <code>data/men/</code> folder was uploaded to the repository root alongside <code>index.html</code>.</p>
+      </div>`;
+      throw err;
+    });
     store = Object.fromEntries(entries);
     // index by id for quick lookup
     store._index = {};
